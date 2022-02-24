@@ -1,0 +1,3 @@
+*See if name, address, date, email, password are not null;
+*Create a min character number for password;
+*Menu loop when creating username and password;

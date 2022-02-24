@@ -57,4 +57,8 @@ public class UtilityMenu {
         }
         return true;
     }
+
+    public boolean validatorAccUsername(String username){
+        return functionsAcc.findUsername(username);
+    }
 }

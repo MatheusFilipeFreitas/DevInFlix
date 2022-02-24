@@ -3,6 +3,8 @@ package devinflix.users;
 import devinflix.movies.Movie;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.SplittableRandom;
 
 public class UserController {
 
@@ -28,7 +30,50 @@ public class UserController {
         return 0; //account not found
     }
 
-    public void curtirDescurtirFilme(Movie filme, User usuario, boolean curtir){
+    public boolean findUsername(String username){
+        for(User u: list) {
+            if(username.equals(u.getUserName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String showName(String username, String password){
+        for(User u: list){
+            if(findAccount(username, password) == 1){
+                return u.getUserName().toUpperCase(Locale.ROOT);
+            }
+        }
+        return null;
+    }
+
+    public void addAccountNames(String username, String password, String accountName){
+        for(User u: list){
+            if(findAccount(username, password) == 1){
+                for(int i = 0; i < u.getNumAccounts(); i++){
+                    if(u.getAccountNames(i) == null){
+                        u.addAccountNames(accountName, i);
+                    }
+                }
+            }
+        }
+    }
+
+    //select account name edit by id
+    public void editAccountNames(String username, String password, int index, String newAccountName){
+        for(User u: list){
+            if(findAccount(username, password) == 1){
+                for(int i = 0; i < u.getNumAccounts(); i++){
+                    if(i == index){
+                        u.addAccountNames(newAccountName, i);
+                    }
+                }
+            }
+        }
+    }
+
+    public void curtirDescurtirFilme(Movie filme, boolean curtir){
         if(curtir){
             filme.setCurtidas(filme.getCurtidas() + 1);
         }else{

@@ -10,6 +10,7 @@ public class User {
     private String ruaEndereco;
     private String password;
     private int numAccounts;
+    private String accountNames[] = new String[numAccounts];
 
     public User(){
 
@@ -81,6 +82,13 @@ public class User {
         this.numAccounts = numAccounts;
     }
 
+    public void addAccountNames(String nameAccount, int index){
+        this.accountNames[index] = nameAccount;
+    }
+
+    public String getAccountNames(int index){
+        return accountNames[index];
+    }
 
 }
 
